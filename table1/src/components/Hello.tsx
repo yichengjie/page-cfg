@@ -8,12 +8,13 @@ const tableSchema ={
           render:'showUserNameColumnFnName',//用户可能需要显示高亮一点
         },
         { title: '专业', dataItemKey: 'dept',  width: 100 },
-        { title: '主页', dataItemKey: 'homepage',width: 200,
-           dataItemColumnRender:'showMyHomePageFnName'//主页可能需要显示成超链接
+        { title: '主页', dataItemKey: 'homepage',width: 300,
+           render:'showMyHomePageFnName'//主页可能需要显示成超链接
         },
-        //{ title: '操作', dataItemKey: '',  width:300 },//dateKey为空，标识为操作列
+        { title: '操作', dataItemKey: '',  width:100 },//dateKey为空，标识为操作列
     ],
-    rowKeyNames:['username','dept'] //--定义每一行记录根据哪几个字段能确定数据库中的一条记录
+    rowKeyNames:['username','dept'], //--定义每一行记录根据哪几个字段能确定数据库中的一条记录
+    width:600,/**表格的宽度 */
 }
 
 const data = [
@@ -24,7 +25,19 @@ const data = [
 
 //自定义表格本页面的表格显示
 class MyTable extends BaseTable{
-
+    showMyHomePageFnName = (value:string) =>{
+        return (
+            <a href="#">点击:{value}</a>
+        ) ;
+    }
+    showUserNameColumnFnName = (value:string) => {
+        return (
+            <span>
+                <i className="glyphicon glyphicon-user"></i>&nbsp;&nbsp;
+                {value}
+            </span>
+        ) ;
+    }
 }
 
 interface HelloStates{
@@ -45,29 +58,20 @@ export class Hello extends React.Component<any, HelloStates> {
         } ;
     }
 
-
     componentDidMount(){
         //先去查询表格显示的schema
         this.setState({
             schema:tableSchema
         }) ;
-
         setTimeout(()=>{
             this.setState({list:data}) ;
         },20) ;
-
-    }
-
-    showMyHomePageFnName(value:string){
-        return (
-            <a href="#">{value}</a>
-        ) ;
     }
 
     render() {
         return (
-            <div>
-                <h1>Hello workd!</h1>
+            <div className="container">
+                <h3>这部分时查询条件区域</h3>
                 <MyTable  code ="table163" 
                     description="大客户表信息描述" 
                     list={this.state.list}
