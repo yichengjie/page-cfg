@@ -24,6 +24,7 @@
   "dependencies": {
     "@types/react": "^16.0.5",
     "@types/react-dom": "^15.5.4",
+    "bootstrap": "^3.3.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
