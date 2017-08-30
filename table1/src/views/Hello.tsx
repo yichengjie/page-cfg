@@ -34,11 +34,11 @@ export class Hello extends React.Component<any, HelloStates> {
         return (
             <div className="container">
                 <h3>这部分时查询条件区域</h3>
-                <BaseTable  code ="table163" 
+                <HelloTable  code ="table163" 
                     description="大客户表信息描述" 
                     list={this.state.list}
                     schema={this.state.schema}
-                    />
+                />
             </div>
         ) ; 
     }
